@@ -4,9 +4,19 @@ import scrapy
 
 class ToScrapeSpiderXPath(scrapy.Spider):
     name = 'toscrape-xpath'
-    start_urls = [
-        'http://quotes.toscrape.com/',
+    urls = [
+        'http://www.baidu.com',
+        'https://scm.hue.workslan/users/sign_in',
+        'http://product-ci/users/sign_in'
     ]
+
+    def start_requests(self):
+        for url in self.urls:
+            yield scrapy.Request(url=url, callback=self.login, dont_filter=True)
+
+    def login(self, response):
+        self.log("Login start:")
+        self.log("Start is....")
 
     def parse(self, response):
         for quote in response.xpath('//div[@class="quote"]'):
