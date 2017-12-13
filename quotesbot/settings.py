@@ -14,11 +14,18 @@ BOT_NAME = 'quotesbot'
 SPIDER_MODULES = ['quotesbot.spiders']
 NEWSPIDER_MODULE = 'quotesbot.spiders'
 
-
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'quotesbot (+http://www.yourdomain.com)'
 
+
+DOWNLOADER_MIDDLEWARES = {
+    'scrapy.downloadermiddlewares.cookies.CookiesMiddleware': 700
+
+
+}
+
 # Obey robots.txt rules
+COOKIES_DEBUG = True
 ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
